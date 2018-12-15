@@ -5,6 +5,7 @@ import "@tensorflow/tfjs";
 import "./App.css";
 import logo from './logo.svg'
 import Webcam from './webcam';
+import Loader from './loader';
 
 class App extends React.Component {
   componentDidMount() {
@@ -34,6 +35,11 @@ class App extends React.Component {
         const model = await cocoSsd.load();
         console.log("loaded")
                 
+        console.log("MODEL LOADED");
+        const modelLoad = "LOADED";
+        Loader(modelLoad);
+
+
         this.predict(video, model);
      }
 
@@ -71,11 +77,11 @@ class App extends React.Component {
       const width = prediction.bbox[2];
       const height = prediction.bbox[3];
       // Draw the bounding box.
-      ctx.strokeStyle = "#00FFFF";
-      ctx.lineWidth = 4;
+      ctx.strokeStyle = "red";
+      ctx.lineWidth = 3;
       ctx.strokeRect(x, y, width, height);
       // Draw the label background.
-      ctx.fillStyle = "#00FFFF";
+      ctx.fillStyle = "black";
       const textWidth = ctx.measureText(prediction.class).width;
       const textHeight = parseInt(font, 10); // base 10
       ctx.fillRect(x, y, textWidth + 4, textHeight + 4);
@@ -85,7 +91,7 @@ class App extends React.Component {
       const x = prediction.bbox[0];
       const y = prediction.bbox[1];
       // Draw the text last to ensure it's on top.
-      ctx.fillStyle = "#000000";
+      ctx.fillStyle = "white";
       ctx.fillText(prediction.class, x, y);
     });
 
@@ -105,9 +111,26 @@ class App extends React.Component {
                 <h3> This app is using coco-ssd model with tfjs to predict objects</h3>
               </header>
             </div>
+            <br/>
+            <div id="loading-message">
+                <p>Face-api.js model is loading. This will take a few moments ...</p>
+                {/* <p>All good things come for those who wait</p> */}
+              </div>
+	    
+            <div className="sk-cube-grid" id="sk-cube-grid">
+              <div className="sk-cube sk-cube1"></div>
+              <div className="sk-cube sk-cube2"></div>
+              <div className="sk-cube sk-cube3"></div>
+              <div className="sk-cube sk-cube4"></div>
+              <div className="sk-cube sk-cube5"></div>
+              <div className="sk-cube sk-cube6"></div>
+              <div className="sk-cube sk-cube7"></div>
+              <div className="sk-cube sk-cube8"></div>
+              <div className="sk-cube sk-cube9"></div>
+            </div>
 
-        <video id="video" controls autoPlay  />
-        <canvas id="canvas"  />
+          <video id="video" controls autoPlay  />
+          <canvas id="canvas"  />
       </div>
     );
   }

@@ -17,6 +17,7 @@ const Webcam = () =>{
           // constraints
                 {
                   video: {
+                          facingMode: "environment",
                           width: width,
                           height: height
                         },
