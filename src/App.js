@@ -113,7 +113,7 @@ class App extends React.Component {
             </div>
             <br/>
             <div id="loading-message">
-                <p>Face-api.js model is loading. This will take a few moments ...</p>
+                <p>Model is loading. This will take a few moments ...</p>
                 {/* <p>All good things come for those who wait</p> */}
               </div>
 	    
